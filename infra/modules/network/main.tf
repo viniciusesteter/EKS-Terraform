@@ -24,7 +24,7 @@ resource "aws_subnet" "k8s-eks-subnet" {
   vpc_id                  = aws_vpc.k8s_private_vpc.id
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   cidr_block              = cidrsubnet(aws_vpc.k8s_private_vpc.cidr_block, 8, count.index)
-  map_private_ip_on_launch = true
+  map_public_ip_on_launch = false
 
   tags = merge(
       tomap({a = "Name", b = "k8s-eks-subnet"}),
