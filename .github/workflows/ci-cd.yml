@@ -50,6 +50,8 @@ jobs:
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v1.5
         with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           images: viniciusesteter/rotten-potatoes:${{ github.run_number }}
           manifests: |
             k8s/deployment.yaml
